@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato | Consultoria Ambiental e Segurança</title>
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Importação do arquivo CSS para estilização -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Cabeçalho fixo com logo e menu -->
+  <header id="main-header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="img/logo.png" alt="Logo da empresa">
+      </a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="quem-somos.html">Quem Somos</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="contato.html" class="active">Contato</a> <!-- página atual -->
+      </nav>
+      <button class="menu-toggle">&#9776;</button> <!-- ícone para menu responsivo -->
+    </div>
+  </header>
+
+      <!-- Banner da página Contato -->
+      <section class="banner-contato">
+        <div class="banner-content">
+          <h1>Contato</h1>
+          <p><i class="fas fa-home"></i> <a href="index.html">Home</a> &rsaquo; Contato</p>
+        </div>
+      </section>
+
+
+  <!-- Conteúdo principal da página de contato -->
+  <main class="container">
+    <section class="section">
+      <h2>Entre em Contato</h2>
+      <p>Preencha o formulário abaixo e nossa equipe entrará em contato o mais breve possível.</p>
+
+      <!-- Formulário de contato com envio via formsubmit -->
+      <form action="https://formsubmit.co/SEU_EMAIL_AQUI" method="POST" class="form-contato">
+        
+        <!-- Linha com dois campos lado a lado -->
+        <div class="form-row">
+          <div class="input-wrapper">
+            <img src="icone/user.png" alt="Usuário">
+            <input type="text" name="name" placeholder="Nome" required>
+          </div>
+          <div class="input-wrapper">
+            <img src="icone/telefone.png" alt="Telefone">
+            <input type="tel" name="telefone" placeholder="Telefone">
+          </div>
+        </div>
+
+        <!-- Campo email com ícone -->
+        <div class="input-wrapper full">
+          <img src="icone/email.png" alt="Email">
+          <input type="email" name="email" placeholder="Email" required>
+        </div>
+
+        <!-- Campo mensagem com mais espaço -->
+        <div class="input-wrapper full">
+          <textarea name="message" placeholder="Mensagem" rows="5" required></textarea>
+        </div>
+
+        <!-- Botão de envio -->
+        <button type="submit" class="btn-enviar">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Rodapé com informações da empresa -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-logo">
+        <img src="img/logo.png" alt="Logo da empresa">
+        <p>Consultoria em Meio Ambiente e Segurança do Trabalho</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Links úteis</h4>
+        <ul>
+          <li><a href="quem-somos.html">Quem Somos</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <p>
+          <img src="icone/social.png" alt="WhatsApp" style="width: 20px; vertical-align: middle; margin-right: 6px;">
+          <a href="https://wa.me/5511945515333" target="_blank">(11) 94551-5333</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Consultoria Ambiental e Segurança</p>
+    </div>
+  </footer>
+
+  <!-- Botão flutuante do WhatsApp -->
+  <a href="https://wa.me/5511945515333" class="whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+    <img src="icone/social.png" alt="WhatsApp">
+  </a>
+
+  <!-- Script para menu responsivo -->
+  <script src="script.js"></script>
+</body>
+</html>
