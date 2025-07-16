@@ -10,26 +10,57 @@
 
 <body class="home">
 
-  <!-- Cabeçalho com logo e menu de navegação -->
+    <!-- Cabeçalho com logo e menu de navegação -->
   <header id="main-header">
-      <div class="container">
-        <a href="index.html" class="logo">
-          <!-- Logo aumentada no CSS -->
-          <img src="img/logo.png" alt="Logo da empresa">
-        </a>
+  <div class="container">
+    <a href="img/logo.png" class="logo">
+      <img src="img/logo.png" alt="Logo">
+    </a>
 
-        <!-- Botão de menu para mobile -->
-        <button class="menu-toggle" aria-label="Abrir menu">&#9776;</button>
-        
-        <nav>
-          <!-- Navegação com classe "active" para a página atual -->
-          <a href="index.html" class="active">Home</a>
-          <a href="quem-somos.html">Quem Somos</a>
+    <!-- Botão hamburguer (mobile) -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu">
+      ☰
+    </button>
+
+     <!-- MENU DESKTOP -->
+    <nav id="nav-desktop" aria-label="Menu principal (desktop)">
+      <ul class="menu">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="quem-somos.html">Quem Somos</a></li>
+        <li class="has-submenu">
           <a href="servicos.html">Serviços</a>
-          <a href="contato.html">Contato</a>
-        </nav>
-      </div>
-    </header>
+          <ul class="submenu">
+            <li><a href="consultoria.html">Consultoria</a></li>
+            <li><a href="treinamentos.html">Treinamentos</a></li>
+            <li><a href="projetos-especiais.html">Projetos Especiais</a></li>
+            <li><a href="laudos.html">Laudos e Programas</a></li>
+          </ul>
+        </li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+
+    <!-- MENU MOBILE -->
+    <nav id="nav-mobile" aria-label="Menu principal (mobile)">
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="quem-somos.html">Quem Somos</a></li>
+        <li class="has-submenu">
+          <button class="submenu-toggle" aria-expanded="false">
+            Serviços <span>▼</span>
+          </button>
+          <ul class="submenu">
+            <li><a href="consultoria.html">Consultoria</a></li>
+            <li><a href="treinamentos.html">Treinamentos</a></li>
+            <li><a href="projetos-especiais.html">Projetos Especiais</a></li>
+            <li><a href="laudos.html">Laudos e Programas</a></li>
+          </ul>
+        </li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
     <!-- Banner com imagem de fundo e botão de ação -->
   <section class="banner">
@@ -128,8 +159,7 @@
   <footer>
     <div class="container footer-grid">
       <div class="footer-logo">
-        <img src="img/logo.png" alt="Logo da empresa">
-        <p>Consultoria em Meio Ambiente e Segurança do Trabalho</p>
+        <img src="img/logo-rodape.png" alt="Logo da empresa">
       </div>
       <div class="footer-col">
         <h4>Links úteis</h4>
@@ -158,7 +188,33 @@
     <img src="icone/social.png" alt="WhatsApp">
   </a>
 
-  <script src="script.js"></script>
+<script>
+  const toggleMenu = document.getElementById('menu-toggle');
+  const navMobile = document.getElementById('nav-mobile');
+
+  toggleMenu.addEventListener('click', () => {
+    navMobile.classList.toggle('active');
+  });
+
+  // Submenus recolhíveis
+  document.querySelectorAll('.submenu-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.parentElement.classList.toggle('open');
+    });
+  });
+</script>
+
+<!-- ✅ Sticky header ao rolar -->
+<script>
+  window.addEventListener("scroll", function () {
+    const header = document.getElementById("main-header");
+    if (window.scrollY > 100) {
+      header.classList.add("sticky");
+    } else {
+      header.classList.remove("sticky");
+    }
+  });
+</script>
 
 </body>
 </html>
