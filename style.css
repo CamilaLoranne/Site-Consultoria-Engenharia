@@ -752,9 +752,18 @@ nav a {
 
 
   /* Botão menu toggle visível só no mobile */
-  .menu-toggle {
-    display: block;
-  }
+ .menu-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 1000;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #333;
+}
+
 
   /* Ajusta o header sticky só para mobile */
   #main-header.sticky {
