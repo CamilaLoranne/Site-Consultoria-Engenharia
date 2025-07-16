@@ -711,29 +711,104 @@ footer {
   display: block;
 }
 
-/* RESPONSIVO */
+/* ======================= */
+/* ESTILOS MOBILE (até 768px) */
+/* ======================= */
 @media (max-width: 768px) {
+
+  /* Header container flex para mobile */
   header .container {
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: row; /* mantém linha */
+    justify-content: space-between; /* espaço entre elementos */
+    padding: 0.8rem 1rem; /* menos padding lateral para mobile */
   }
 
+  /* Ajusta navegação para coluna no mobile */
   nav {
     flex-direction: column;
     gap: 0.5rem;
     align-items: flex-start;
+    display: none; /* inicialmente escondido para menu toggle */
   }
 
+  /* Navegação visível ao abrir menu no mobile */
   nav.show {
     display: flex;
   }
 
+  /* Botão menu toggle visível só no mobile */
   .menu-toggle {
     display: block;
   }
 
+  /* Ajusta o header sticky só para mobile */
+  #main-header.sticky {
+    background-color: #003c2e; /* cor fixa no sticky */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 0.5rem 1rem; /* menos padding lateral */
+    height: 60px; /* altura menor no mobile */
+  }
+
+  #main-header.sticky .container {
+    padding: 0; /* remove padding extra */
+    align-items: center; /* centraliza verticalmente */
+  }
+
+  /* Ajusta tamanho da logo no sticky para mobile */
+  #main-header.sticky .logo img {
+    max-height: 50px;
+    margin-top: 0;
+  }
+
+  /* Ajusta tamanho da logo normal para mobile */
+  .logo img {
+    max-height: 80px;
+    margin-top: 0;
+    transition: max-height 0.3s ease, margin-top 0.3s ease;
+  }
+
+  /* Ajusta links da navegação para mobile */
+  nav a {
+    font-size: 1rem; /* tamanho menor */
+    padding: 0.5rem 0;
+    color: #fff !important;
+  }
+
+  #main-header.sticky nav a {
+    font-size: 0.95rem;
+    padding: 0.3rem 0;
+  }
+
+  /* Ajusta banner para mobile */
+  .banner {
+    padding: 4rem 1rem 3rem; /* menos padding para telas pequenas */
+    min-height: 400px; /* altura menor */
+    clip-path: none; /* remove corte inclinado no mobile para evitar cortes estranhos */
+  }
+
+  .banner-content {
+    margin-top: 3rem;
+    gap: 1rem;
+  }
+
+  .banner h1 {
+    font-size: 1.8rem;
+  }
+
+  .banner p {
+    font-size: 1rem;
+  }
+
+  .banner .btn {
+    padding: 0.7rem 1.4rem;
+    font-size: 0.9rem;
+  }
+
+  /* Ajusta footer para centralizar no mobile */
   .footer-grid {
     text-align: center;
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .footer-col,
@@ -741,4 +816,22 @@ footer {
     align-items: center;
     justify-content: center;
   }
+
+  /* Ajusta layout do conteúdo flexível para mobile */
+  .conteudo-flex {
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .imagem-projeto,
+  .texto-projeto {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .texto-projeto p {
+    font-size: 1rem;
+  }
+  
 }
