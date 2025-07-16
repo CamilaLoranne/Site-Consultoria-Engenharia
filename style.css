@@ -723,6 +723,7 @@ footer {
     padding: 0.8rem 1rem; /* menos padding lateral para mobile */
   }
 
+  /* Ajusta navegação para coluna no mobile */
   nav {
   position: fixed; /* fixa na tela */
   top: 60px; /* logo abaixo do header */
@@ -750,7 +751,6 @@ nav a {
   font-weight: 600;
 }
 
-
   /* Botão menu toggle visível só no mobile */
  .menu-toggle {
   position: fixed;
@@ -762,6 +762,38 @@ nav a {
   border: none;
   font-size: 2rem;
   color: #fff;
+  transition: color 0.3s ease;
+}
+
+/* Quando o menu estiver aberto, o botão recebe a classe 'open' */
+.menu-toggle.open {
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+/* Muda o símbolo no botão quando aberto */
+.menu-toggle.open::before {
+  content: '×'; /* símbolo do X */
+}
+
+/* Esconde o conteúdo original quando aberto */
+.menu-toggle.open {
+  /* para esconder o símbolo hamburguer (≡) original */
+  color: transparent;
+  position: relative;
+}
+
+/* Exibe o X no pseudo-elemento */
+.menu-toggle.open::before {
+  content: '×'; /* <-- esta linha é obrigatória */
+  color: #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 2.5rem;
 }
 
 
