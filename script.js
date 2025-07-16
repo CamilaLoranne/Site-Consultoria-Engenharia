@@ -1,26 +1,43 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const menuToggle = document.querySelector(".menu-toggle");
-  const nav = document.querySelector("nav");
+  const menuToggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("nav-mobile");
   const header = document.getElementById("main-header");
 
-  // Toggle do menu mobile (hamburguer)
+  // Toggle do menu mobile
   menuToggle.addEventListener("click", () => {
     nav.classList.toggle("show");
+    menuToggle.classList.toggle("open");
+    menuToggle.innerHTML = menuToggle.classList.contains("open") ? "✕" : "☰";
   });
 
-  // Sticky header ao rolar a página
-  window.addEventListener("scroll", function () {
-    if (window.scrollY > 100) {
-      header.classList.add("sticky");  // adiciona classe sticky
+  // Sticky header ao rolar
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      header.classList.add("sticky");
     } else {
-      header.classList.remove("sticky");  // remove classe sticky
+      header.classList.remove("sticky");
     }
   });
 
-  // Fecha o menu mobile ao clicar em qualquer link da navegação
-  document.querySelectorAll("nav a").forEach(link => {
+  // Fecha o menu mobile ao clicar em um link
+  document.querySelectorAll("#nav-mobile a").forEach(link => {
     link.addEventListener("click", () => {
       nav.classList.remove("show");
+      menuToggle.classList.remove("open");
+      menuToggle.innerHTML = "☰";
+    });
+  });
+
+  // Controle do submenu no mobile (Serviços)
+  document.querySelectorAll(".submenu-toggle").forEach(toggle => {
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      const parent = toggle.closest(".has-submenu");
+      parent.classList.toggle("open");
+
+      // Atualiza aria-expanded
+      const expanded = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", !expanded);
     });
   });
 });
