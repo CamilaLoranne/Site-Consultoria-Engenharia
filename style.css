@@ -178,48 +178,6 @@ nav a:hover {
   margin-top: 6rem; /* empurra todo o bloco de conteúdo para baixo */
 }
 
-.pagina-interna .banner-content {
-  max-width: 800px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-
-  margin-top: 0;
-
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  gap: 2rem;
-}
-
-.servicos .banner-content {
-  max-width: 800px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-
-  margin-top: 0;
-
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  gap: 2rem;
-}
-
-.servicos .banner {
-  position: relative;
-  height: 300px; /* ajuste conforme o tamanho do seu banner */
-}
-
-
 
 .banner h1 {
   font-size: 2.5rem;
