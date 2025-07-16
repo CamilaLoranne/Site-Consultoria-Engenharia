@@ -752,17 +752,16 @@ nav a {
 }
 
   /* Botão menu toggle visível só no mobile */
- .menu-toggle {
+.menu-toggle {
+  color: #000; /* Visível no fundo branco */
+  z-index: 1001; /* acima do nav */
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
   position: fixed;
   top: 15px;
   right: 15px;
-  z-index: 1000;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  font-size: 2rem;
-  color: #fff;
-  transition: color 0.3s ease;
 }
 
 /* Quando o menu estiver aberto, o botão recebe a classe 'open' */
