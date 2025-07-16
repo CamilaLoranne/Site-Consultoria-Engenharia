@@ -50,7 +50,7 @@ header .container {
   transition: padding 0.3s ease;
 }
 
-/* Header normal */
+/* Header padrão */
 #main-header {
   position: absolute;
   top: 0;
@@ -60,10 +60,9 @@ header .container {
   transition: all 0.3s ease;
   z-index: 10;
   padding: 1rem 0;
-  height: auto;
 }
 
-/* Header ao rolar */
+/* Header quando rola a página */
 #main-header.sticky {
   position: fixed;
   background-color: #003c2e;
@@ -71,8 +70,8 @@ header .container {
   animation: slideDown 0.3s ease forwards;
   padding: 0.5rem 0;
   height: 70px;
-  transition: all 0.3s ease;
 }
+
 
 #main-header.sticky .container {
   align-items: flex-start;
@@ -178,6 +177,49 @@ nav a:hover {
   gap: 2rem;
   margin-top: 6rem; /* empurra todo o bloco de conteúdo para baixo */
 }
+
+.pagina-interna .banner-content {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  margin-top: 0;
+
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  gap: 2rem;
+}
+
+.servicos .banner-content {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  margin-top: 0;
+
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  gap: 2rem;
+}
+
+.servicos .banner {
+  position: relative;
+  height: 300px; /* ajuste conforme o tamanho do seu banner */
+}
+
+
 
 .banner h1 {
   font-size: 2.5rem;
@@ -338,7 +380,8 @@ nav a:hover {
 body.home .servicos-grid-home {
   display: flex;
   gap: 1.5rem;
-  overflow-x: auto;
+  border-radius: 12px; /* ou o valor que quiser */
+  overflow: hidden; /* para que o arredondado funcione e nada "escape" */
   padding: 0.5rem 2rem;  /* aumenta o espaço nas laterais */
   scroll-behavior: smooth;
   scrollbar-width: none;
@@ -351,7 +394,8 @@ body.home .servicos-grid-home::-webkit-scrollbar {
 body.home .servicos-grid-home .card-servico {
   flex: 0 0 280px;      /* largura fixa para todos os cards */
   height: 240px;        /* altura fixa */
-  border-radius: 12px;
+  border-radius: 12px; /* já tem, pode ajustar para o valor que quiser */
+  overflow: hidden; /* para garantir que a imagem respeite o arredondado */
   background-size: cover;
   background-position: center;
   color: #fff;
@@ -407,7 +451,7 @@ body.servicos .servicos-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
-  max-width: 900px; /* limita o tamanho total da grid para não esticar demais */
+  max-width: 1200px; /* limita o tamanho total da grid para não esticar demais */
   margin: 0 auto; /* centraliza horizontalmente a grid */
 }
 
@@ -415,7 +459,8 @@ body.servicos .servicos-grid .card-servico {
   position: relative;
   display: flex;
   align-items: flex-end;
-  height: 240px; /* altura que você quer */
+  height: 300px; /* altura que você quer */
+  min-width: 400px; /* força o card a ter pelo menos 500px */
   border-radius: 10px;
   background-size: cover;       /* garante que a imagem cubra todo o card */
   background-position: center;  /* centraliza a imagem */
@@ -474,6 +519,13 @@ body.servicos .servicos-grid .card-servico:hover .seta {
   background: none;
   box-shadow: none;
   padding: 2rem 1rem;
+}
+
+.section.container h2 {
+  text-align: center;
+  font-weight: 700;  /* se quiser deixar em negrito */
+  color: #004d40;    /* cor parecida com o seu exemplo, ajuste se quiser */
+  margin-bottom: 2rem; /* espaço abaixo do título */
 }
 
 
@@ -647,8 +699,9 @@ footer {
 }
 
 .footer-logo img {
-  max-height: 50px;
+  max-height: 220px;
   margin-bottom: 0.5rem;
+  margin-left: -120px; /* Ajuste o valor conforme desejar */
 }
 
 .footer-logo p {
@@ -660,6 +713,7 @@ footer {
   margin-bottom: 1rem;
   font-size: 1.1rem;
   color: #fff;
+  margin-top: 4rem; /* Ajuste o valor para descer mais ou menos */
 }
 
 .footer-col ul {
@@ -712,133 +766,131 @@ footer {
 }
 
 /* ======================= */
-/* ESTILOS MOBILE (até 768px) */
+/* RESPONSIVO - MOBILE & DESKTOP */
+/* ======================= */
+
+/* ======================= */
+/* MOBILE (até 768px) */
 /* ======================= */
 @media (max-width: 768px) {
-
-  /* Header container flex para mobile */
   header .container {
-    flex-direction: row; /* mantém linha */
-    justify-content: space-between; /* espaço entre elementos */
-    padding: 0.8rem 1rem; /* menos padding lateral para mobile */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    position: relative;
   }
 
-  /* Ajusta navegação para coluna no mobile */
-  nav {
-  position: fixed; /* fixa na tela */
-  top: 60px; /* logo abaixo do header */
-  left: 0;
-  width: 100%;
-  height: calc(100vh - 60px); /* altura total da tela menos o header */
-  background-color: #fff;
-  flex-direction: column;
-  padding: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  overflow-y: auto;
-  display: none; /* escondido por padrão */
-  z-index: 999; /* fica acima dos outros elementos */
-}
-
-nav.show {
-  display: flex;
-}
-
-nav a {
-  padding: 1rem 0;
-  border-bottom: 1px solid #ddd;
-  width: 100%;
-  color: #333 !important;
-  font-weight: 600;
-}
-
-  /* Botão menu toggle visível só no mobile */
-.menu-toggle {
-  color: #000; /* Visível no fundo branco */
-  z-index: 1001; /* acima do nav */
-  background: none;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  position: fixed;
-  top: 15px;
-  right: 15px;
-}
-
-/* Quando o menu estiver aberto, o botão recebe a classe 'open' */
-.menu-toggle.open {
-  font-size: 2.5rem;
-  color: #fff;
-}
-
-/* Muda o símbolo no botão quando aberto */
-.menu-toggle.open::before {
-  content: '×'; /* símbolo do X */
-}
-
-/* Esconde o conteúdo original quando aberto */
-.menu-toggle.open {
-  /* para esconder o símbolo hamburguer (≡) original */
-  color: transparent;
-  position: relative;
-}
-
-/* Exibe o X no pseudo-elemento */
-.menu-toggle.open::before {
-  content: '×'; /* <-- esta linha é obrigatória */
-  color: #fff;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  font-size: 2.5rem;
-}
-
-
-  /* Ajusta o header sticky só para mobile */
-  #main-header.sticky {
-    background-color: #003c2e; /* cor fixa no sticky */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    padding: 0.5rem 1rem; /* menos padding lateral */
-    height: 60px; /* altura menor no mobile */
-  }
-
-  #main-header.sticky .container {
-    padding: 0; /* remove padding extra */
-    align-items: center; /* centraliza verticalmente */
-  }
-
-  /* Ajusta tamanho da logo no sticky para mobile */
-  #main-header.sticky .logo img {
-    max-height: 50px;
-    margin-top: 0;
-  }
-
-  /* Ajusta tamanho da logo normal para mobile */
   .logo img {
     max-height: 80px;
     margin-top: 0;
-    transition: max-height 0.3s ease, margin-top 0.3s ease;
   }
 
-  /* Ajusta links da navegação para mobile */
-  nav a {
-    font-size: 1rem; /* tamanho menor */
-    padding: 0.5rem 0;
-    color: #fff !important;
+  /* MENU TOGGLE (hamburger) */
+  .menu-toggle {
+    display: block;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: #004d40;
+    cursor: pointer;
+    z-index: 1001;
   }
 
-  #main-header.sticky nav a {
-    font-size: 0.95rem;
-    padding: 0.3rem 0;
+  .menu-toggle.open::before {
+    content: '×';
+    color: white;
+    font-size: 2.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
   }
 
-  /* Ajusta banner para mobile */
+  /* NAV MOBILE */
+  #nav-desktop {
+    display: none !important;
+  }
+
+  #nav-mobile {
+    display: none;
+    flex-direction: column;
+    background-color: #004d40;
+    padding: 1rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  #nav-mobile.show {
+    display: flex;
+  }
+
+  #nav-mobile ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #nav-mobile li {
+    margin-bottom: 1rem;
+  }
+
+  #nav-mobile a,
+  .submenu-toggle {
+    color: white;
+    font-size: 1.1rem;
+    text-decoration: none;
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+    display: block;
+  }
+
+  .submenu-toggle span {
+    float: right;
+    transition: transform 0.3s ease;
+  }
+
+  .has-submenu.open .submenu-toggle span {
+    transform: rotate(180deg);
+  }
+
+  .submenu {
+    display: none;
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .has-submenu.open .submenu {
+    display: block;
+  }
+
+  /* STICKY HEADER */
+  #main-header.sticky {
+    background-color: #003c2e;
+    padding: 0.5rem 1rem;
+    height: 60px;
+  }
+
+  #main-header.sticky .container {
+    padding: 0;
+    align-items: center;
+  }
+
+  #main-header.sticky .logo img {
+    max-height: 50px;
+  }
+
+  /* BANNER */
   .banner {
-    padding: 4rem 1rem 3rem; /* menos padding para telas pequenas */
-    min-height: 400px; /* altura menor */
-    clip-path: none; /* remove corte inclinado no mobile para evitar cortes estranhos */
+    padding: 4rem 1rem 3rem;
+    min-height: 400px;
+    clip-path: none;
   }
 
   .banner-content {
@@ -859,20 +911,7 @@ nav a {
     font-size: 0.9rem;
   }
 
-  /* Ajusta footer para centralizar no mobile */
-  .footer-grid {
-    text-align: center;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .footer-col,
-  .footer-logo {
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Ajusta layout do conteúdo flexível para mobile */
+  /* CONTEÚDO FLEX */
   .conteudo-flex {
     flex-direction: column;
     gap: 20px;
@@ -888,5 +927,81 @@ nav a {
   .texto-projeto p {
     font-size: 1rem;
   }
-  
+
+  /* FOOTER */
+  .footer-grid {
+    text-align: center;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .footer-col,
+  .footer-logo {
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+/* -------- DESKTOP -------- */
+@media (min-width: 769px) {
+  nav {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .menu-toggle {
+    display: none !important;
+  }
+
+  #nav-mobile {
+    display: none !important;
+  }
+
+  #nav-desktop {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  #nav-desktop ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  #nav-desktop a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  #nav-desktop .has-submenu {
+    position: relative;
+  }
+
+  #nav-desktop .submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    background: #004d40;
+    padding: 0.5rem 0;
+    list-style: none;
+    min-width: 200px;
+  }
+
+  #nav-desktop .has-submenu:hover .submenu {
+    display: block;
+  }
+
+  #nav-desktop .submenu li a {
+    padding: 0.5rem 1rem;
+    color: #fff;
+    display: block;
+  }
 }
