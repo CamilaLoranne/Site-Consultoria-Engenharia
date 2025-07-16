@@ -10,26 +10,60 @@
   <!-- Importação do arquivo CSS para estilização -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-  <!-- Cabeçalho fixo com logo e menu -->
+<body class="pagina-interna">
+
+  <!-- Cabeçalho com logo e menu de navegação -->
   <header id="main-header">
-    <div class="container">
-      <a href="index.html" class="logo">
-        <img src="img/logo.png" alt="Logo da empresa">
-      </a>
+  <div class="container">
+    <a href="img/logo.png" class="logo">
+      <img src="img/logo.png" alt="Logo">
+    </a>
 
-      <!-- Botão de menu para mobile -->
-      <button class="menu-toggle" aria-label="Abrir menu">&#9776;</button>
+    <!-- Botão hamburguer (mobile) -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu">
+      ☰
+    </button>
 
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="quem-somos.html">Quem Somos</a>
-        <a href="servicos.html">Serviços</a>
-        <a href="contato.html" class="active">Contato</a> <!-- página atual -->
-      </nav>
-    </div>
-  </header>
+     <!-- MENU DESKTOP -->
+    <nav id="nav-desktop" aria-label="Menu principal (desktop)">
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="quem-somos.html">Quem Somos</a></li>
+        <li class="has-submenu">
+          <a href="servicos.html">Serviços</a>
+          <ul class="submenu">
+            <li><a href="consultoria.html">Consultoria</a></li>
+            <li><a href="treinamentos.html">Treinamentos</a></li>
+            <li><a href="projetos-especiais.html">Projetos Especiais</a></li>
+            <li><a href="laudos.html">Laudos e Programas</a></li>
+          </ul>
+        </li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+
+    <!-- MENU MOBILE -->
+    <nav id="nav-mobile" aria-label="Menu principal (mobile)">
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="quem-somos.html">Quem Somos</a></li>
+        <li class="has-submenu">
+          <button class="submenu-toggle" aria-expanded="false">
+            Serviços <span>▼</span>
+          </button>
+          <ul class="submenu">
+            <li><a href="consultoria.html">Consultoria</a></li>
+            <li><a href="treinamentos.html">Treinamentos</a></li>
+            <li><a href="projetos-especiais.html">Projetos Especiais</a></li>
+            <li><a href="laudos.html">Laudos e Programas</a></li>
+          </ul>
+        </li>
+        <li><a href="contato.html" class="active">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
       <!-- Banner da página Contato -->
       <section class="banner-contato">
@@ -78,14 +112,12 @@
     </section>
   </main>
 
-  <!-- Rodapé com informações da empresa -->
+  <!-- Rodapé com logo, links e contato -->
   <footer>
     <div class="container footer-grid">
       <div class="footer-logo">
-        <img src="img/logo.png" alt="Logo da empresa">
-        <p>Consultoria em Meio Ambiente e Segurança do Trabalho</p>
+        <img src="img/logo-rodape.png" alt="Logo da empresa">
       </div>
-
       <div class="footer-col">
         <h4>Links úteis</h4>
         <ul>
@@ -94,16 +126,15 @@
           <li><a href="contato.html">Contato</a></li>
         </ul>
       </div>
-
       <div class="footer-col">
         <h4>Contato</h4>
         <p>
+          <!-- Ícone do WhatsApp -->
           <img src="icone/social.png" alt="WhatsApp" style="width: 20px; vertical-align: middle; margin-right: 6px;">
           <a href="https://wa.me/5511945515333" target="_blank">(11) 94551-5333</a>
         </p>
       </div>
     </div>
-
     <div class="footer-bottom">
       <p>© 2025 Consultoria Ambiental e Segurança</p>
     </div>
@@ -114,7 +145,33 @@
     <img src="icone/social.png" alt="WhatsApp">
   </a>
 
-  <!-- Script para menu responsivo -->
-  <script src="script.js"></script>
+<script>
+  const toggleMenu = document.getElementById('menu-toggle');
+  const navMobile = document.getElementById('nav-mobile');
+
+  toggleMenu.addEventListener('click', () => {
+    navMobile.classList.toggle('active');
+  });
+
+  // Submenus recolhíveis
+  document.querySelectorAll('.submenu-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.parentElement.classList.toggle('open');
+    });
+  });
+</script>
+
+<!-- ✅ Sticky header ao rolar -->
+<script>
+  window.addEventListener("scroll", function () {
+    const header = document.getElementById("main-header");
+    if (window.scrollY > 100) {
+      header.classList.add("sticky");
+    } else {
+      header.classList.remove("sticky");
+    }
+  });
+</script>
+
 </body>
 </html>
