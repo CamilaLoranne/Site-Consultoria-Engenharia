@@ -213,11 +213,11 @@ nav a:hover {
               url('img/quem-somos.png') center/cover no-repeat;
   color: #fff;
   text-align: center;
-  padding: 8rem 1rem 6rem;
+  padding: 4rem 1rem 3rem;
   display: flex;
   justify-content: center;
   align-items: flex-start; /* antes era center */
-  min-height: 60vh;
+  min-height: 40vh;
   position: relative;
 }
 
