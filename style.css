@@ -723,18 +723,33 @@ footer {
     padding: 0.8rem 1rem; /* menos padding lateral para mobile */
   }
 
-  /* Ajusta navegação para coluna no mobile */
   nav {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: flex-start;
-    display: none; /* inicialmente escondido para menu toggle */
-  }
+  position: fixed; /* fixa na tela */
+  top: 60px; /* logo abaixo do header */
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 60px); /* altura total da tela menos o header */
+  background-color: #fff;
+  flex-direction: column;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow-y: auto;
+  display: none; /* escondido por padrão */
+  z-index: 999; /* fica acima dos outros elementos */
+}
 
-  /* Navegação visível ao abrir menu no mobile */
-  nav.show {
-    display: flex;
-  }
+nav.show {
+  display: flex;
+}
+
+nav a {
+  padding: 1rem 0;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+  color: #333 !important;
+  font-weight: 600;
+}
+
 
   /* Botão menu toggle visível só no mobile */
   .menu-toggle {
