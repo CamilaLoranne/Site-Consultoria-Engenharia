@@ -8,6 +8,9 @@
 
   <!-- Importação do arquivo CSS para estilização -->
   <link rel="stylesheet" href="style.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
 </head>
 
 <body>
@@ -47,8 +50,11 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="quem-somos.html">Quem Somos</a></li>
         <li class="has-submenu">
+          <!-- Palavra "Serviços" clicável -->
+          <a href="servicos.html" class="submenu-link">Serviços</a>
+          <!-- Seta para abrir/fechar o submenu -->
           <button class="submenu-toggle" aria-expanded="false">
-            Serviços <span>▼</span>
+            <span>▼</span>
           </button>
           <ul class="submenu">
             <li><a href="consultoria.html">Consultoria</a></li>
@@ -98,53 +104,101 @@
 </section>
 
  <!-- Rodapé com logo, links e contato -->
-  <footer>
-    <div class="container footer-grid">
-      <div class="footer-logo">
-        <img src="img/logo-rodape.png" alt="Logo da empresa">
-      </div>
-      <div class="footer-col">
-        <h4>Links úteis</h4>
-        <ul>
-          <li><a href="quem-somos.html">Quem Somos</a></li>
-          <li><a href="servicos.html">Serviços</a></li>
-          <li><a href="contato.html">Contato</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contato</h4>
-        <p>
-          <!-- Ícone do WhatsApp -->
-          <img src="icone/social.png" alt="WhatsApp" style="width: 20px; vertical-align: middle; margin-right: 6px;">
-          <a href="https://wa.me/5511945515333" target="_blank">(11) 94551-5333</a>
-        </p>
-      </div>
+<!-- Rodapé Desktop -->
+<footer class="footer-desktop">
+  <div class="container footer-grid">
+    <div class="footer-logo">
+      <img src="img/logo-rodape.png" alt="Logo da empresa">
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 Consultoria Ambiental e Segurança</p>
+    <div class="footer-col">
+      <h4>Links úteis</h4>
+      <ul>
+        <li><a href="quem-somos.html">Quem Somos</a></li>
+        <li><a href="servicos.html">Serviços</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
     </div>
-  </footer>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <p>
+        <!-- Ícone do WhatsApp -->
+        <img src="icone/social.png" alt="WhatsApp" style="width: 20px; vertical-align: middle; margin-right: 6px;">
+        <a href="https://wa.me/5511945515333" target="_blank">(11) 94551-5333</a>
+      </p>
+      <!-- Botão flutuante do WhatsApp -->
+      <a href="https://wa.me/5511945515333" class="whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+        <img src="icone/social.png" alt="WhatsApp">
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Consultoria Ambiental e Segurança</p>
+  </div>
+</footer>
 
-  <!-- Botão flutuante do WhatsApp -->
+<!-- Rodapé Mobile -->
+<footer class="footer-mobile">
+  <div class="container footer-grid">
+    <div class="footer-logo">
+      <img src="img/logo-rodape.png" alt="Logo da empresa">
+    </div>
+    <div class="footer-col">
+      <h4>Links úteis</h4>
+      <ul>
+        <li><a href="quem-somos.html">Quem Somos</a></li>
+        <li><a href="servicos.html">Serviços</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </div>
+    <!-- Botão flutuante do WhatsApp -->
   <a href="https://wa.me/5511945515333" class="whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
     <img src="icone/social.png" alt="WhatsApp">
   </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Consultoria Ambiental e Segurança</p>
+  </div>
+</footer>
 
 <script>
-  const toggleMenu = document.getElementById('menu-toggle');
-  const navMobile = document.getElementById('nav-mobile');
+    document.addEventListener("DOMContentLoaded", function () {
+  
+      // MENU HAMBÚRGUER (Mobile)
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMobile = document.getElementById('nav-mobile');
 
-  toggleMenu.addEventListener('click', () => {
-    navMobile.classList.toggle('active');
-  });
+    // Toggle do menu mobile
+    menuToggle.addEventListener('click', () => {
+      navMobile.classList.toggle('active'); // Usando a classe 'active'
+      menuToggle.classList.toggle('open');
+      menuToggle.innerHTML = menuToggle.classList.contains('open') ? "✕" : "☰"; // Troca entre ☰ e ✕
+    });
 
-  // Submenus recolhíveis
-  document.querySelectorAll('.submenu-toggle').forEach(btn => {
-    btn.addEventListener('click', () => {
-      btn.parentElement.classList.toggle('open');
+    // Fechar o menu mobile ao clicar em qualquer link
+    document.querySelectorAll('#nav-mobile a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMobile.classList.remove('active'); // Fechar o menu
+        menuToggle.classList.remove('open');  // Alterar a classe do hambúrguer para "☰"
+        menuToggle.innerHTML = "☰";  // Retorna ao ícone de hambúrguer
+      });
+    });
+
+    // Controle do submenu no mobile (Serviços)
+    document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault(); // Previne o comportamento padrão do link
+        const parent = toggle.closest('.has-submenu'); // Encontra o li com a classe has-submenu
+        parent.classList.toggle('open'); // Adiciona ou remove a classe .open para exibir/ocultar o submenu
+
+        // Atualiza o atributo 'aria-expanded' para refletir o estado aberto ou fechado do submenu
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', !expanded);
+      });
     });
   });
-</script>
+  </script>
+
 
 <!-- ✅ Sticky header ao rolar -->
 <script>
