@@ -981,7 +981,7 @@ body.servicos .servicos-grid .card-servico:hover .seta {
   /* BANNER */
   .banner {
     padding: 4rem 1rem 3rem;
-    min-height: 350px; /* Ajuste na altura */
+    min-height: 400px; /* Ajuste na altura */
     clip-path: none;
   }
 
