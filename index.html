@@ -22,7 +22,7 @@
       ☰
     </button>
 
-     <!-- MENU DESKTOP -->
+    <!-- MENU DESKTOP -->
     <nav id="nav-desktop" aria-label="Menu principal (desktop)">
       <ul class="menu">
         <li><a href="index.html" class="active">Home</a></li>
@@ -46,8 +46,11 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="quem-somos.html">Quem Somos</a></li>
         <li class="has-submenu">
+          <!-- Palavra "Serviços" clicável -->
+          <a href="servicos.html" class="submenu-link">Serviços</a>
+          <!-- Seta para abrir/fechar o submenu -->
           <button class="submenu-toggle" aria-expanded="false">
-            Serviços <span>▼</span>
+            <span>▼</span>
           </button>
           <ul class="submenu">
             <li><a href="consultoria.html">Consultoria</a></li>
@@ -59,7 +62,8 @@
         <li><a href="contato.html">Contato</a></li>
       </ul>
     </nav>
-  </div>
+
+
 </header>
 
     <!-- Banner com imagem de fundo e botão de ação -->
@@ -74,20 +78,21 @@
   </section>
 
 
-
     <!-- Conteúdo principal da página -->
     <main>
-      <section style="max-width: 1200px; margin: 0 auto 4rem; padding: 0 1rem; text-align: left;">
+      <section style="max-width: 1200px; margin: 0 auto 4rem; padding: 0 1rem; text-align: center; margin-top: 2rem;">
+        <!-- Ajuste de margin-top para adicionar espaço acima -->
         <div style="color: #333;">
           <h2 style="margin-bottom: 0.5rem;">Bem-vindo à Nossa Consultoria</h2>
         </div>
       </section>
+    </main>
 
 
 
       <!-- Bloco destaque antes dos Nossos Serviços -->
       <section class="destaque-home" style="max-width: 1200px; margin: 0 auto 4rem; padding: 0 1rem;">
-        <div style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; justify-content: center;"> <!-- Centralizando o conteúdo -->
           
           <!-- Imagem -->
           <div style="flex: 1 1 350px; max-width: 350px;">
@@ -156,65 +161,155 @@
     </main>
 
   <!-- Rodapé com logo, links e contato -->
-  <footer>
-    <div class="container footer-grid">
-      <div class="footer-logo">
-        <img src="img/logo-rodape.png" alt="Logo da empresa">
-      </div>
-      <div class="footer-col">
-        <h4>Links úteis</h4>
-        <ul>
-          <li><a href="quem-somos.html">Quem Somos</a></li>
-          <li><a href="servicos.html">Serviços</a></li>
-          <li><a href="contato.html">Contato</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contato</h4>
-        <p>
-          <!-- Ícone do WhatsApp -->
-          <img src="icone/social.png" alt="WhatsApp" style="width: 20px; vertical-align: middle; margin-right: 6px;">
-          <a href="https://wa.me/5511945515333" target="_blank">(11) 94551-5333</a>
-        </p>
-      </div>
+<!-- Rodapé Desktop -->
+<footer class="footer-desktop">
+  <div class="container footer-grid">
+    <div class="footer-logo">
+      <img src="img/logo-rodape.png" alt="Logo da empresa">
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 Consultoria Ambiental e Segurança</p>
+    <div class="footer-col">
+      <h4>Links úteis</h4>
+      <ul>
+        <li><a href="quem-somos.html">Quem Somos</a></li>
+        <li><a href="servicos.html">Serviços</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
     </div>
-  </footer>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <p>
+        <!-- Ícone do WhatsApp -->
+        <img src="icone/social.png" alt="WhatsApp" style="width: 20px; vertical-align: middle; margin-right: 6px;">
+        <a href="https://wa.me/5511945515333" target="_blank">(11) 94551-5333</a>
+      </p>
+      <!-- Botão flutuante do WhatsApp -->
+      <a href="https://wa.me/5511945515333" class="whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+        <img src="icone/social.png" alt="WhatsApp">
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Consultoria Ambiental e Segurança</p>
+  </div>
+</footer>
 
-  <!-- Botão flutuante do WhatsApp -->
+<!-- Rodapé Mobile -->
+<footer class="footer-mobile">
+  <div class="container footer-grid">
+    <div class="footer-logo">
+      <img src="img/logo-rodape.png" alt="Logo da empresa">
+    </div>
+    <div class="footer-col">
+      <h4>Links úteis</h4>
+      <ul>
+        <li><a href="quem-somos.html">Quem Somos</a></li>
+        <li><a href="servicos.html">Serviços</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </div>
+    <!-- Botão flutuante do WhatsApp -->
   <a href="https://wa.me/5511945515333" class="whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
     <img src="icone/social.png" alt="WhatsApp">
   </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Consultoria Ambiental e Segurança</p>
+  </div>
+</footer>
 
 <script>
-  const toggleMenu = document.getElementById('menu-toggle');
-  const navMobile = document.getElementById('nav-mobile');
+  document.addEventListener("DOMContentLoaded", function () {
+    // SLIDER automático para "Nossos Serviços" (mobile only)
+    const servicos = document.querySelectorAll('.card-servico');
+    let current = 0;
+    let sliderInterval;
 
-  toggleMenu.addEventListener('click', () => {
-    navMobile.classList.toggle('active');
-  });
+    // Função para verificar se é mobile
+    function isMobile() {
+      return window.matchMedia('(max-width: 768px)').matches;
+    }
 
-  // Submenus recolhíveis
-  document.querySelectorAll('.submenu-toggle').forEach(btn => {
-    btn.addEventListener('click', () => {
-      btn.parentElement.classList.toggle('open');
+    // Função para exibir o serviço atual no slider
+    function showServico(index) {
+      servicos.forEach((card, i) => {
+        card.style.display = i === index ? 'block' : 'none';
+      });
+    }
+
+    // Inicia o slider
+    function startSlider() {
+      if (servicos.length === 0) return; // Evita erro se não encontrar cards
+      clearInterval(sliderInterval); // Limpa o intervalo se já estiver rodando
+      showServico(current);
+      sliderInterval = setInterval(() => {
+        current = (current + 1) % servicos.length; // Muda o índice do serviço
+        showServico(current);
+      }, 2000); // Muda a cada 2 segundos
+    }
+
+    // Para o slider no desktop (mostra todos os cards)
+    function stopSlider() {
+      clearInterval(sliderInterval);
+      servicos.forEach(card => card.style.display = 'inline-block'); // Exibe todos no desktop
+    }
+
+    // Gerencia a mudança de comportamento dependendo do tamanho da tela
+    function handleResize() {
+      if (isMobile()) {
+        startSlider();
+      } else {
+        stopSlider();
+      }
+    }
+
+    // Inicializa o slider no carregamento e ao redimensionar a janela
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+
+    // MENU HAMBÚRGUER (Mobile)
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMobile = document.getElementById('nav-mobile');
+
+    // Toggle do menu mobile
+    menuToggle.addEventListener('click', () => {
+      navMobile.classList.toggle('active'); // Usando a classe 'active'
+      menuToggle.classList.toggle('open');
+      menuToggle.innerHTML = menuToggle.classList.contains('open') ? "✕" : "☰"; // Troca entre ☰ e ✕
+    });
+
+    // Fechar o menu mobile ao clicar em qualquer link
+    document.querySelectorAll('#nav-mobile a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMobile.classList.remove('active'); // Fechar o menu
+        menuToggle.classList.remove('open');  // Alterar a classe do hambúrguer para "☰"
+        menuToggle.innerHTML = "☰";  // Retorna ao ícone de hambúrguer
+      });
+    });
+
+    // Controle do submenu no mobile (Serviços)
+    document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault(); // Previne o comportamento padrão do link
+        const parent = toggle.closest('.has-submenu'); // Encontra o li com a classe has-submenu
+        parent.classList.toggle('open'); // Adiciona ou remove a classe .open para exibir/ocultar o submenu
+
+        // Atualiza o atributo 'aria-expanded' para refletir o estado aberto ou fechado do submenu
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', !expanded);
+      });
     });
   });
-</script>
 
-<!-- ✅ Sticky header ao rolar -->
-<script>
-  window.addEventListener("scroll", function () {
+    // STICKY HEADER AO ROLAR
     const header = document.getElementById("main-header");
-    if (window.scrollY > 100) {
-      header.classList.add("sticky");
-    } else {
-      header.classList.remove("sticky");
-    }
-  });
-</script>
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    });
 
-</body>
-</html>
+</script>
