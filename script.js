@@ -1,14 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const menuToggle = document.getElementById("menu-toggle");
-  const nav = document.getElementById("nav-mobile");
   const header = document.getElementById("main-header");
-
-  // Toggle do menu mobile
-  menuToggle.addEventListener("click", () => {
-    nav.classList.toggle("show");
-    menuToggle.classList.toggle("open");
-    menuToggle.innerHTML = menuToggle.classList.contains("open") ? "✕" : "☰";
-  });
 
   // Sticky header ao rolar
   window.addEventListener("scroll", () => {
@@ -19,25 +10,53 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Fecha o menu mobile ao clicar em um link
-  document.querySelectorAll("#nav-mobile a").forEach(link => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("show");
-      menuToggle.classList.remove("open");
-      menuToggle.innerHTML = "☰";
-    });
-  });
+  // SLIDER automático para "Nossos Serviços" (mobile only)
+  const servicos = document.querySelectorAll('.card-servico');
+  let current = 0;
+  let sliderInterval;
 
-  // Controle do submenu no mobile (Serviços)
-  document.querySelectorAll(".submenu-toggle").forEach(toggle => {
-    toggle.addEventListener("click", (e) => {
-      e.preventDefault();
-      const parent = toggle.closest(".has-submenu");
-      parent.classList.toggle("open");
+  // Função para verificar se é mobile
+  function isMobile() {
+    return window.matchMedia('(max-width: 768px)').matches;
+  }
 
-      // Atualiza aria-expanded
-      const expanded = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", !expanded);
+  // Função para exibir o serviço atual no slider
+  function showServico(index) {
+    servicos.forEach((card, i) => {
+      card.style.display = i === index ? 'block' : 'none';
     });
+  }
+
+  // Inicia o slider
+  function startSlider() {
+    if (servicos.length === 0) return;
+    clearInterval(sliderInterval); // Limpa o intervalo se já estiver rodando
+    showServico(current);
+    sliderInterval = setInterval(() => {
+      current = (current + 1) % servicos.length;
+      showServico(current);
+    }, 2000);
+  }
+
+  // Para o slider no desktop (mostra todos os cards)
+  function stopSlider() {
+    clearInterval(sliderInterval);
+    servicos.forEach(card => card.style.display = 'inline-block');
+  }
+
+  // Gerencia a mudança de comportamento dependendo do tamanho da tela
+  function handleResize() {
+    if (isMobile()) {
+      startSlider();
+    } else {
+      stopSlider();
+    }
+  }
+
+  // Inicializa o slider no carregamento e ao redimensionar a janela
+  handleResize();
+  window.addEventListener('resize', () => {
+    clearInterval(sliderInterval); // Limpa o intervalo ao redimensionar
+    handleResize();
   });
 });
