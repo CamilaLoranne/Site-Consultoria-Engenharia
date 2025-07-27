@@ -86,8 +86,8 @@ header .container {
 }
 
 #main-header.sticky .logo img {
-  max-height: 60px;
-  margin-top: -8px;
+  max-height: 70px;
+  margin-top: -10px;
 }
 
 /* Navegação */
@@ -127,7 +127,7 @@ nav a:hover {
 }
 
 .menu-toggle {
-  display: none;
+  display: block;
   background: none;
   border: none;
   font-size: 2rem;
@@ -407,7 +407,7 @@ body.home .servicos-grid-home .card-servico:hover .seta {
 /* =================== */
 body.servicos .servicos-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);  /* Layout 2x2 para desktop */
   gap: 1.5rem;
   max-width: 1200px; /* limita o tamanho total da grid para não esticar demais */
   margin: 0 auto; /* centraliza horizontalmente a grid */
@@ -430,7 +430,6 @@ body.servicos .servicos-grid .card-servico {
   color: #fff;
   background-color: transparent; /* remove fundo branco */
 }
-
 
 body.servicos .servicos-grid .card-servico:hover {
   transform: scale(1.05);
@@ -486,74 +485,42 @@ body.servicos .servicos-grid .card-servico:hover .seta {
   margin-bottom: 2rem; /* espaço abaixo do título */
 }
 
-
 .card-servico:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
-.conteudo-flex {
-  display: flex;
-  flex-direction: row;     /* garante alinhamento horizontal */
-  align-items: center;     /* alinha verticalmente */
-  gap: 40px;               /* espaço entre imagem e texto */
-  flex-wrap: wrap;         /* quebra em telas pequenas */
-  justify-content: space-between; /* distribui espaço */
-}
 
+/* Ajuste para layout mobile */
+@media (max-width: 768px) {
+  body.servicos .servicos-grid {
+    grid-template-columns: 1fr;  /* Alterando para uma coluna no mobile */
+    gap: 1rem; /* Menor espaçamento entre os cards */
+  }
 
-.imagem-projeto {
-  flex: 1 1 40%;
-  text-align: center;
-}
+  body.servicos .servicos-grid .card-servico {
+    height: 250px; /* Ajustando a altura para o mobile */
+    min-width: 0;  /* Removendo o mínimo de largura */
+  }
 
-.imagem-projeto img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.texto-projeto {
-  flex: 1 1 55%;
-}
-
-.texto-projeto p {
-  font-size: 1.1rem;
-  color: #333;
-  margin-bottom: 15px;
-  line-height: 1.6;
-}
-
-.texto-projeto ul {
-  list-style-type: disc;
-  padding-left: 20px;
-  color: #555;
-  font-size: 1rem;
-  line-height: 1.6;
+  .conteudo-flex {
+    flex-direction: column; /* Mudando para coluna no mobile */
+    gap: 20px;
+  }
 }
 
 /* Remove marcadores e alinha a lista */
-/* Remove marcadores e recuo do UL */
-/* Remove marcadores e recuo do UL */
 .lista-treinamentos {
-  list-style: none !important;        /* 1) zera list-style               */
-  list-style-type: none !important;   /* 2) redundância p/ cross‑browser  */
-  padding-left: 0 !important;         /* 3) tira o recuo do UL            */
+  list-style: none !important;
+  padding-left: 0 !important;
 
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-/* 4) Garante que nenhum pseudo‑marker apareça */
-.lista-treinamentos li::marker,
-.lista-treinamentos li::before {
-  content: none !important;
-}
-
-/* Estilo base dos blocos */
 .lista-treinamentos li {
-  background: #d9d9d9;        /* cinza claro */
+  background: #d9d9d9;
   border-radius: 8px;
   padding: 18px 22px;
   font-weight: 600;
@@ -562,10 +529,9 @@ body.servicos .servicos-grid .card-servico:hover .seta {
   box-shadow: 0 1px 3px rgba(0,0,0,.08);
 }
 
-/* Efeito hover: fica verde */
 .lista-treinamentos li:hover {
-  background: #28a745;        /* verde (Bootstrap) */
-  color: #fff;                /* texto branco para contraste */
+  background: #28a745;
+  color: #fff;
 }
 
 
@@ -638,90 +604,189 @@ body.servicos .servicos-grid .card-servico:hover .seta {
   background-color: #5f530f;
 }
 
+
 /* ============ */
 /* RODAPÉ */
 /* ============ */
-footer {
-  background-color: #00251a;
-  color: #fff;
-  padding: 2rem 1rem 0;
-  margin-top: auto;
+
+/* ===================== */
+/* RODAPÉ PARA DESKTOP */
+/* ===================== */
+.footer-desktop {
+  display: block; /* Exibe o rodapé no desktop */
+  background-color: #00251a; /* Cor de fundo do rodapé */
+  color: #fff; /* Cor do texto branco */
+  padding: 2rem 1rem 0; /* Espaçamento interno do rodapé */
+  margin-top: auto; /* Faz com que o rodapé fique no fundo da página */
 }
 
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-  align-items: start;
-  text-align: left;
+
+.footer-desktop .footer-grid {
+  display: grid; /* Usamos grid layout para o rodapé */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Define o número de colunas, ajustando conforme a tela */
+  gap: 2rem; /* Espaçamento entre as colunas */
+  align-items: start; /* Alinha os itens no topo da coluna */
+  text-align: left; /* Alinha o texto à esquerda */
 }
 
-.footer-logo img {
-  max-height: 220px;
-  margin-bottom: 0.5rem;
-  margin-left: -120px; /* Ajuste o valor conforme desejar */
+.footer-desktop .footer-logo img {
+  max-height: 220px; /* Ajusta o tamanho máximo da imagem do logo */
+  margin-bottom: 0.5rem; /* Espaçamento abaixo da imagem */
+  margin-left: -120px; /* Ajuste para posicionar o logo adequadamente */
 }
 
-.footer-logo p {
-  font-size: 0.9rem;
-  color: #ccc;
+.footer-desktop .footer-col h4 {
+  margin-bottom: 1rem; /* Espaçamento abaixo do título da coluna */
+  font-size: 1.1rem; /* Tamanho do título */
+  color: #fff; /* Cor do título */
+  margin-top: 4rem; /* Ajuste o valor para descer ou subir o título */
 }
 
-.footer-col h4 {
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
-  color: #fff;
-  margin-top: 4rem; /* Ajuste o valor para descer mais ou menos */
+.footer-desktop .footer-col ul {
+  list-style: none; /* Remove os marcadores da lista */
+  padding: 0; /* Remove o padding */
 }
 
-.footer-col ul {
-  list-style: none;
-  padding: 0;
+.footer-desktop .footer-col a {
+  color: #fff; /* Cor do texto dos links */
+  text-decoration: none; /* Remove o sublinhado dos links */
 }
 
-.footer-col ul li {
-  margin-bottom: 0.5rem;
+.footer-desktop .footer-col a:hover {
+  text-decoration: underline; /* Adiciona sublinhado no hover */
 }
 
-.footer-col a {
-  color: #fff;
-  text-decoration: none;
+.footer-desktop .footer-bottom {
+  text-align: center; /* Centraliza o texto */
+  padding: 1rem 0; /* Espaçamento no rodapé inferior */
+  background-color: #1a1a1a; /* Cor de fundo da parte inferior */
+  font-size: 0.9rem; /* Tamanho da fonte */
+  margin-top: 2rem; /* Espaçamento superior */
 }
 
-.footer-col a:hover {
-  text-decoration: underline;
+/* ===================== */
+/* RODAPÉ PARA MOBILE */
+/* ===================== */
+.footer-mobile {
+  display: none; /* Inicialmente esconde o rodapé no mobile */
 }
 
-.footer-bottom {
-  text-align: center;
-  padding: 1rem 0;
-  background-color: #1a1a1a;
-  font-size: 0.9rem;
-  margin-top: 2rem;
+@media (max-width: 768px) {
+  /* Exibe o rodapé mobile no mobile */
+  .footer-mobile {
+    display: block; /* Exibe o rodapé mobile */
+    background-color: #00251a; /* Cor de fundo do rodapé */
+    color: #fff; /* Cor do texto branco */
+    padding: 2rem 1rem 0; /* Espaçamento interno do rodapé */
+    margin-top: auto; /* Faz com que o rodapé fique no fundo da página */
+  }
+
+  /* Rodapé mobile */
+  .footer-mobile .footer-grid {
+    display: block; /* Alinha o conteúdo do rodapé em bloco no mobile */
+    text-align: center; /* Centraliza o texto */
+    gap: 1rem; /* Ajuste de espaçamento entre os itens */
+  }
+
+  .footer-mobile .footer-logo img {
+    max-height: 120px; /* Ajusta a altura do logo para mobile */
+    margin-left: 0; /* Remove o deslocamento à esquerda do logo */
+  }
+
+  .footer-mobile .footer-col h4 {
+    font-size: 1.5rem; /* Ajuste do tamanho da fonte do título no mobile */
+    margin-top: 3rem; /* Diminui o espaçamento superior */
+  }
+
+  .footer-mobile .footer-col ul {
+    list-style: none; /* Remove os marcadores da lista */
+    padding: 0; /* Remove o padding */
+  }
+
+  .footer-mobile .footer-col a {
+    color: #fff; /* Cor do texto dos links */
+    text-decoration: none; /* Remove o sublinhado dos links */
+  }
+
+  /* Outras regras para o rodapé mobile */
+  .footer-mobile .footer-grid {
+    display: block;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .footer-mobile .footer-bottom {
+    text-align: center; /* Centraliza o texto */
+    padding: 1rem 0; /* Espaçamento no rodapé inferior */
+    background-color: #1a1a1a; /* Cor de fundo da parte inferior */
+    font-size: 0.9rem; /* Tamanho da fonte */
+    margin-top: 2rem; /* Espaçamento superior */
+    width: 100%; /* Garantir que a largura ocupe toda a tela */
+    margin-left: 0; /* Remove o espaço à esquerda */
+    margin-right: 0; /* Remove o espaço à direita */
+  }
+
+  /* Esconde o rodapé desktop no mobile */
+  .footer-desktop {
+    display: none !important; /* Esconde o rodapé desktop */
+  }
 }
 
-/* BOTÃO WHATSAPP */
+
+
+/* ======================= */
+/* BOTÃO FLUTUANTE WHATSAPP */
+/* ======================= */
 .whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #25d366;
-  border-radius: 50%;
-  padding: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  transition: transform 0.3s;
+  position: fixed; /* Fixa o botão no fundo da tela */
+  bottom: 20px; /* Distância do fundo */
+  right: 20px; /* Distância da direita */
+  background-color: #25d366; /* Cor de fundo do botão */
+  border-radius: 50%; /* Torna o botão circular */
+  padding: 12px; /* Espaçamento interno */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra ao redor do botão */
+  z-index: 1000; /* Garante que o botão fique acima de outros elementos */
 }
 
 .whatsapp-float:hover {
-  transform: scale(1.1);
+  transform: scale(1.1); /* Aumenta o botão ao passar o mouse */
 }
 
 .whatsapp-float img {
-  width: 30px;
-  height: 30px;
-  display: block;
+  width: 40px; /* Tamanho do ícone */
+  height: 40px; /* Tamanho do ícone */
+  display: block; /* Exibe o ícone como um bloco */
 }
+
+/* Ajustes para o mobile */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 15px; /* Distância do fundo no mobile */
+    right: 15px; /* Distância da direita no mobile */
+    padding: 10px; /* Menor padding no mobile */
+  }
+
+  .whatsapp-float img {
+    width: 35px; /* Tamanho do ícone ajustado para o mobile */
+    height: 35px;
+  }
+}
+
+/* No desktop */
+@media (min-width: 769px) {
+  .whatsapp-float {
+    bottom: 20px; /* Distância do fundo no desktop */
+    right: 20px; /* Distância da direita no desktop */
+    padding: 12px; /* Padding ajustado para o desktop */
+  }
+
+  .whatsapp-float img {
+    width: 40px; /* Tamanho do ícone ajustado para o desktop */
+    height: 40px;
+  }
+}
+
+
 
 /* ======================= */
 /* RESPONSIVO - MOBILE & DESKTOP */
@@ -746,87 +811,156 @@ footer {
 
   /* MENU TOGGLE (hamburger) */
   .menu-toggle {
-    display: block;
-    font-size: 2rem;
     background: none;
     border: none;
-    color: #004d40;
+    font-size: 2rem;
+    color: #fff; /* Cor do ícone */
     cursor: pointer;
-    z-index: 1001;
+    z-index: 1100;
+    transition: transform 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .menu-toggle.open::before {
-    content: '×';
-    color: white;
-    font-size: 2.5rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-  }
-
+  
   /* NAV MOBILE */
   #nav-desktop {
     display: none !important;
   }
 
+  /* Menu mobile */
   #nav-mobile {
     display: none;
-    flex-direction: column;
-    background-color: #004d40;
-    padding: 1rem;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
-    width: 100%;
+    width: 80vw;
+    height: 100vh;
+    background-color: #004d40;
+    padding-top: 60px;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  /* Quando a classe 'active' é aplicada ao menu */
+  #nav-mobile.active {
+    display: block;
+    transform: translateX(0);
+    background-color: #004d40; /* Cor de fundo do menu quando aberto */
     z-index: 1000;
   }
 
-  #nav-mobile.show {
-    display: flex;
+  #nav-mobile .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
   #nav-mobile ul {
     list-style: none;
-    margin: 0;
     padding: 0;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Aumenta o espaçamento entre os itens */
   }
 
   #nav-mobile li {
-    margin-bottom: 1rem;
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #fff; /* Separando as opções do menu */
+  }
+
+  #nav-mobile .menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
   }
 
   #nav-mobile a,
-  .submenu-toggle {
-    color: white;
-    font-size: 1.1rem;
-    text-decoration: none;
-    background: none;
-    border: none;
-    text-align: left;
-    width: 100%;
-    display: block;
-  }
+.submenu-toggle {
+  color: white;
+  font-size: 1.1rem;
+  text-decoration: none;
+  background: none;
+  border: none;
+  text-align: left;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+}
 
-  .submenu-toggle span {
-    float: right;
-    transition: transform 0.3s ease;
-  }
+#nav-mobile .menu li {
+  padding: 1rem;
+  border-bottom: 1px solid #fff; /* Separando as opções do menu */
+  display: flex;
+  justify-content: space-between; /* Garante que a seta e a palavra fiquem alinhadas */
+}
 
-  .has-submenu.open .submenu-toggle span {
-    transform: rotate(180deg);
-  }
+/* Estilos para o texto do submenu (diferenciar das demais opções) */
+#nav-mobile .submenu li a {
+  font-size: 1rem; /* Tamanho da fonte do submenu */
+  color: #f5f5f5;  /* Cor diferente do texto principal */
+  font-weight: normal; /* Remover negrito se necessário */
+  padding: 1rem; /* Padding para dar um espaçamento confortável */
+  text-align: left; /* Alinhamento à esquerda */
+}
 
-  .submenu {
-    display: none;
-    padding-left: 1rem;
-    margin-top: 0.5rem;
-  }
+#nav-mobile .submenu li a:hover {
+  background-color: #003c2e; /* Cor de fundo */
+  color: #fff; /* Garantir que o texto fique branco quando hover */
+}
 
-  .has-submenu.open .submenu {
-    display: block;
-  }
+
+
+.submenu-toggle span {
+  float: right;
+  transition: transform 0.3s ease;
+}
+
+.has-submenu.open .submenu-toggle span {
+  transform: rotate(180deg);
+}
+
+/* Submenu: Agora ele ficará abaixo da opção "Serviços" */
+.submenu {
+  display: none; /* Inicialmente oculto */
+  padding-left: 1rem; /* Espaçamento à esquerda */
+  margin-top: 0.5rem; /* Espaço entre a opção principal e as subopções */
+  max-height: 0; /* Inicialmente fechado */
+  overflow: hidden; /* Impede que o conteúdo transborde */
+  transition: max-height 0.3s ease, opacity 0.3s ease; /* Efeito de transição suave */
+  opacity: 0; /* Inicialmente invisível */
+  width: 100%; /* Garante que o submenu tenha a mesma largura do item principal */
+}
+
+/* Adicionar um alinhamento vertical para o submenu abaixo da palavra "Serviços" */
+.has-submenu {
+  position: relative; /* Para garantir que o submenu seja posicionado abaixo do item */
+  width: 100%; /* Garante que o submenu ocupe toda a largura do item principal */
+}
+
+/* Exibe o submenu quando a classe .open for adicionada */
+.has-submenu.open .submenu {
+  display: block; /* Torna o submenu visível */
+  max-height: 500px; /* Ajuste conforme o conteúdo */
+  opacity: 1; /* Torna o submenu visível */
+  transition: opacity 0.3s ease;
+  margin-top: 0.5rem; /* Espaço entre o submenu e a opção "Serviços" */
+}
+
+/* Exibe o submenu de forma vertical abaixo do item principal */
+.has-submenu.open {
+  display: flex;  /* Mostra os itens do submenu em um layout de lista */
+  flex-direction: column; /* Coloca as opções do submenu em uma coluna */
+  width: 100%; /* Submenu vai ocupar 100% da largura do item "Serviços" */
+  padding: 0; /* Remove os espaços desnecessários */
+}
+
 
   /* STICKY HEADER */
   #main-header.sticky {
@@ -847,7 +981,7 @@ footer {
   /* BANNER */
   .banner {
     padding: 4rem 1rem 3rem;
-    min-height: 400px;
+    min-height: 350px; /* Ajuste na altura */
     clip-path: none;
   }
 
@@ -869,34 +1003,64 @@ footer {
     font-size: 0.9rem;
   }
 
-  /* CONTEÚDO FLEX */
+  /* Ajustes para a página de subserviços no mobile */
+@media (max-width: 768px) {
   .conteudo-flex {
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
+    flex-direction: column; /* Empilha o conteúdo no mobile */
+    gap: 20px; /* Ajusta o espaçamento entre as colunas */
   }
 
-  .imagem-projeto,
+  .imagem-projeto {
+    text-align: center;
+  }
+
+  .imagem-projeto img {
+    max-width: 100%; /* Garante que a imagem ocupe toda a largura disponível */
+    height: auto;    /* Ajusta a altura automaticamente */
+    object-fit: cover; /* Ajuste o comportamento da imagem */
+  }
+
   .texto-projeto {
-    flex: 1 1 100%;
-    text-align: center;
+    font-size: 1rem; /* Ajusta o tamanho da fonte para o mobile */
+    padding: 1rem;   /* Adiciona um pouco de espaço ao redor do texto */
   }
 
-  .texto-projeto p {
-    font-size: 1rem;
+  .texto-projeto ul {
+    font-size: 1rem; /* Ajusta o tamanho da fonte da lista */
+    padding-left: 20px;
   }
 
-  /* FOOTER */
+  /* Adiciona espaçamento ao redor do conteúdo */
+  .section.container {
+    padding: 1rem;
+  }
+
+  /* Ajustes no footer */
   .footer-grid {
+    flex-direction: column;
     text-align: center;
-    grid-template-columns: 1fr;
-    gap: 1rem;
   }
+}
 
   .footer-col,
   .footer-logo {
     align-items: center;
     justify-content: center;
+  }
+
+  /* Ajuste para os cards no mobile */
+  @media (max-width: 768px) {
+    .servicos-grid-home {
+      display: block;
+      max-width: 100%; /* Largura do card 100% no mobile */
+      margin: 0 auto;
+    }
+
+    .card-servico {
+      width: 100%;
+      height: 250px; /* Definindo altura dos cards */
+      margin-bottom: 1rem;
+    }
   }
 }
 
@@ -961,5 +1125,53 @@ footer {
     padding: 0.5rem 1rem;
     color: #fff;
     display: block;
+  }
+
+  /* Estilo padrão desktop: mostra todos os cards em grid */
+  .servicos-grid-home {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .card-servico {
+    display: block;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    position: relative;
+    height: 200px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .card-servico:hover {
+    transform: scale(1.05);
+  }
+
+  .card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 8px 8px;
+  }
+
+    .conteudo-flex {
+    flex-direction: row; /* Exibe o conteúdo em linha no desktop */
+    gap: 30px; /* Ajusta o espaçamento entre as colunas */
+  }
+
+  .imagem-projeto {
+    text-align: center;
+  }
+
+  .imagem-projeto img {
+    max-width: 100%; /* Garante que a imagem não ultrapasse o tamanho da coluna */
+    height: auto;    /* Mantém a proporção da imagem */
+    object-fit: cover; /* Preenche o espaço da div sem distorcer a imagem */
   }
 }
