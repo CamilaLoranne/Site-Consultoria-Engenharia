@@ -1,0 +1,1214 @@
+/* RESET E BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+/* =================== */
+/* HEADER E NAVEGAÇÃO */
+/* =================== */
+/* header fixo desde o início (mais robusto) */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  z-index: 1000;
+  padding: 1rem 0;
+  transition: all 0.3s ease;
+}
+
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* sobe todo o conteúdo */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.8rem 2rem; /* padding ajustado */
+  transition: padding 0.3s ease;
+}
+
+/* Header padrão */
+#main-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  transition: all 0.3s ease;
+  z-index: 10;
+  padding: 1rem 0;
+}
+
+/* Header quando rola a página */
+#main-header.sticky {
+  position: fixed;
+  background-color: #003c2e;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.3s ease forwards;
+  padding: 0.5rem 0;
+  height: 70px;
+}
+
+
+#main-header.sticky .container {
+  align-items: flex-start;
+  padding: 0.4rem 2rem;
+}
+
+/* Logo */
+.logo img {
+  max-height: 120px;
+  margin-top: -10px; /* sobe a logo */
+  transition: max-height 0.3s ease, margin-top 0.3s ease;
+}
+
+#main-header.sticky .logo img {
+  max-height: 70px;
+  margin-top: -10px;
+}
+
+/* Navegação */
+nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: flex-start; /* força os links a subir também */
+}
+
+/* Links */
+nav a {
+  color: #fff !important; 
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0;         /* padding leve pra centralizar */
+  line-height: 1.2;          /* mais natural para fontes */
+  margin: 0;                 /* remove ajustes verticais */
+  transform: none;           /* remove deslocamento vertical */
+  transition: all 0.3s ease;
+}
+
+#main-header.sticky nav a {
+  font-size: 1.1rem;
+  padding: 0.3rem 0;
+}
+
+
+nav a.active,
+nav a:hover {
+  border-bottom: 3px solid #fff;
+  padding-bottom: 3px;
+}
+
+.menu-toggle {
+  display: block;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Animação suave */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+
+/* ============ */
+/* BANNERS */
+/* ============ */
+.banner {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.5)),
+              url('img/banner-home1.jpg') center/cover no-repeat;
+  color: #fff;
+  text-align: center;
+  padding: 8rem 1rem 6rem;
+  min-height: 750px; /* 🔹 Aumenta o tamanho da imagem (altura) */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+
+  /* 🔽 AQUI ESTÁ O CORTE INCLINADO */
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.banner-content {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  /* Espaçamento interno entre os elementos */
+  gap: 2rem;
+  margin-top: 6rem; /* empurra todo o bloco de conteúdo para baixo */
+}
+
+
+.banner h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.banner p {
+  font-size: 1.3rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.banner .btn {
+  background-color: #009688;
+  color: #fff;
+  padding: 0.8rem 1.8rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.banner .btn:hover {
+  background-color: #00796b;
+}
+
+/* Banners das páginas internas */
+.banner-quem-somos,
+.banner-servicos,
+.banner-contato {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.5)),
+              url('img/quem-somos.png') center/cover no-repeat;
+  color: #fff;
+  text-align: center;
+  padding: 4rem 1rem 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* antes era center */
+  min-height: 40vh;
+  position: relative;
+}
+
+
+.banner-quem-somos .banner-content h1,
+.banner-servicos .banner-content h1,
+.banner-contato .banner-content h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.banner-quem-somos .banner-content p,
+.banner-servicos .banner-content p,
+.banner-contato .banner-content p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Ícone no breadcrumb */
+.banner-content p i.fa-home {
+  font-size: 1rem;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.banner-content p {
+  font-size: 1rem;
+  margin-top: 1rem;
+  color: #ddd;
+}
+
+.banner-content p a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.banner-content p a:hover {
+  text-decoration: underline;
+}
+
+/* =================== */
+/* SEÇÕES INTERNAS */
+/* =================== */
+.section {
+  padding: 3rem 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+}
+
+.section h2 {
+  color: #003c2e;
+  margin-bottom: 1rem;
+}
+
+
+.historia {
+  padding: 2rem 1rem;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  background-color: #f0f0f0; /* mesmo fundo cinza claro */
+}
+
+.historia p {
+  margin-bottom: 1rem;
+}
+
+.valores {
+  background-color: #f0f0f0;
+  padding: 3rem 1rem;
+  border-radius: 8px;
+}
+
+.valores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.valor-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.valor-card:hover {
+  transform: translateY(-5px);
+}
+
+.valor-card img {
+  width: 50px;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.valor-card h3 {
+  color: #003c2e;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.valor-card p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* =================== */
+/* SERVIÇOS HOME */
+/* =================== */
+/* Home: serviços lado a lado com scroll horizontal */
+body.home .servicos-grid-home {
+  display: flex;
+  gap: 1.5rem; /* Espaço entre os cards */
+  justify-content: center;  /* Alinha os cards na linha */
+  flex-wrap: nowrap; /* Impede que os cards quebrem para a linha seguinte */
+  padding: 0.5rem 2rem; /* Ajuste o padding */
+  max-width: 1200px; /* Limita a largura total para não esticar demais */
+  margin: 0 auto; /* Centraliza a grade na tela */
+  -webkit-overflow-scrolling: touch; /* Para scroll suave no Safari */
+}
+
+body.home .servicos-grid-home::-webkit-scrollbar {
+  display: none;
+}
+
+body.home .servicos-grid-home .card-servico {
+  flex: 0 0 280px;      /* largura fixa para todos os cards */
+  height: 240px;        /* altura fixa */
+  border-radius: 12px; /* já tem, pode ajustar para o valor que quiser */
+  overflow: hidden; /* para garantir que a imagem respeite o arredondado */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+body.home .servicos-grid-home .card-servico:hover {
+  transform: scale(1.05);
+}
+
+body.home .servicos-grid-home .card-servico .card-overlay {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(0deg, rgba(0,0,0,0.7), transparent);
+  padding: 1.2rem 1.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+body.home .servicos-grid-home .card-servico:hover .card-overlay {
+  transform: translateY(-35%);
+}
+
+body.home .servicos-grid-home .card-servico .card-overlay h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+body.home .servicos-grid-home .card-servico .seta {
+  font-size: 1.8rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  user-select: none;
+}
+
+body.home .servicos-grid-home .card-servico:hover .seta {
+  opacity: 1;
+}
+
+
+/* =================== */
+/* PÁGINA SERVIÇOS - GRID FLUIDO 2x2 */
+/* =================== */
+body.servicos .servicos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  /* Layout 2x2 para desktop */
+  gap: 1.5rem;
+  max-width: 1200px; /* limita o tamanho total da grid para não esticar demais */
+  margin: 0 auto; /* centraliza horizontalmente a grid */
+}
+
+body.servicos .servicos-grid .card-servico {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  height: 300px; /* altura que você quer */
+  min-width: 400px; /* força o card a ter pelo menos 500px */
+  border-radius: 10px;
+  background-size: cover;       /* garante que a imagem cubra todo o card */
+  background-position: center;  /* centraliza a imagem */
+  background-repeat: no-repeat; /* evita repetir a imagem */
+  text-decoration: none;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  color: #fff;
+  background-color: transparent; /* remove fundo branco */
+}
+
+body.servicos .servicos-grid .card-servico:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+body.servicos .servicos-grid .card-overlay {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(0deg, rgba(0,0,0,0.7), transparent);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease;
+  transform: translateY(0);
+}
+
+body.servicos .servicos-grid .card-servico:hover .card-overlay {
+  transform: translateY(-40%);
+}
+
+body.servicos .servicos-grid .card-overlay h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(0,0,0,0.8);
+}
+
+body.servicos .servicos-grid .seta {
+  font-size: 1.8rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  margin-left: 10px;
+  user-select: none;
+}
+
+body.servicos .servicos-grid .card-servico:hover .seta {
+  opacity: 1;
+}
+
+.section.container {
+  background: none;
+  box-shadow: none;
+  padding: 2rem 1rem;
+}
+
+.section.container h2 {
+  text-align: center;
+  font-weight: 700;  /* se quiser deixar em negrito */
+  color: #004d40;    /* cor parecida com o seu exemplo, ajuste se quiser */
+  margin-bottom: 2rem; /* espaço abaixo do título */
+}
+
+.card-servico:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+
+/* Ajuste para layout mobile */
+@media (max-width: 768px) {
+  body.servicos .servicos-grid {
+    grid-template-columns: 1fr;  /* Alterando para uma coluna no mobile */
+    gap: 1rem; /* Menor espaçamento entre os cards */
+  }
+
+  body.servicos .servicos-grid .card-servico {
+    height: 250px; /* Ajustando a altura para o mobile */
+    min-width: 0;  /* Removendo o mínimo de largura */
+  }
+
+  .conteudo-flex {
+    display: flex;
+    align-items: center; /* Alinha verticalmente no centro */
+    gap: 5px; /* Espaçamento entre a imagem e o texto */
+  }
+}
+
+/* Remove marcadores e alinha a lista */
+.lista-treinamentos {
+  list-style: none !important;
+  padding-left: 0 !important;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lista-treinamentos li {
+  background: #d9d9d9;
+  border-radius: 8px;
+  padding: 18px 22px;
+  font-weight: 600;
+  cursor: default;
+  transition: background 0.25s ease, color 0.25s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+
+.lista-treinamentos li:hover {
+  background: #28a745;
+  color: #fff;
+}
+
+
+
+/* ============ */
+/* CONTATO */
+/* ============ */
+.form-contato {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.input-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+}
+
+.input-wrapper img {
+  width: 20px;
+  margin-right: 10px;
+  opacity: 0.6;
+}
+
+.input-wrapper input,
+.input-wrapper textarea {
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  flex: 1;
+  padding: 0.5rem;
+  font-family: inherit;
+  background: transparent;
+}
+
+.input-wrapper textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.input-wrapper.full {
+  width: 100%;
+}
+
+.btn-enviar {
+  background-color: #7a6a1d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-enviar:hover {
+  background-color: #5f530f;
+}
+
+
+/* ============ */
+/* RODAPÉ */
+/* ============ */
+
+/* ===================== */
+/* RODAPÉ PARA DESKTOP */
+/* ===================== */
+.footer-desktop {
+  display: block; /* Exibe o rodapé no desktop */
+  background-color: #00251a; /* Cor de fundo do rodapé */
+  color: #fff; /* Cor do texto branco */
+  padding: 2rem 1rem 0; /* Espaçamento interno do rodapé */
+  margin-top: auto; /* Faz com que o rodapé fique no fundo da página */
+}
+
+
+.footer-desktop .footer-grid {
+  display: grid; /* Usamos grid layout para o rodapé */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Define o número de colunas, ajustando conforme a tela */
+  gap: 2rem; /* Espaçamento entre as colunas */
+  align-items: start; /* Alinha os itens no topo da coluna */
+  text-align: left; /* Alinha o texto à esquerda */
+}
+
+.footer-desktop .footer-logo img {
+  max-height: 220px; /* Ajusta o tamanho máximo da imagem do logo */
+  margin-bottom: 0.5rem; /* Espaçamento abaixo da imagem */
+  margin-left: -120px; /* Ajuste para posicionar o logo adequadamente */
+}
+
+.footer-desktop .footer-col h4 {
+  margin-bottom: 1rem; /* Espaçamento abaixo do título da coluna */
+  font-size: 1.1rem; /* Tamanho do título */
+  color: #fff; /* Cor do título */
+  margin-top: 4rem; /* Ajuste o valor para descer ou subir o título */
+}
+
+.footer-desktop .footer-col ul {
+  list-style: none; /* Remove os marcadores da lista */
+  padding: 0; /* Remove o padding */
+}
+
+.footer-desktop .footer-col a {
+  color: #fff; /* Cor do texto dos links */
+  text-decoration: none; /* Remove o sublinhado dos links */
+}
+
+.footer-desktop .footer-col a:hover {
+  text-decoration: underline; /* Adiciona sublinhado no hover */
+}
+
+.footer-desktop .footer-bottom {
+  text-align: center; /* Centraliza o texto */
+  padding: 1rem 0; /* Espaçamento no rodapé inferior */
+  background-color: #1a1a1a; /* Cor de fundo da parte inferior */
+  font-size: 0.9rem; /* Tamanho da fonte */
+  margin-top: 2rem; /* Espaçamento superior */
+}
+
+/* ===================== */
+/* RODAPÉ PARA MOBILE */
+/* ===================== */
+.footer-mobile {
+  display: none; /* Inicialmente esconde o rodapé no mobile */
+}
+
+@media (max-width: 768px) {
+  /* Exibe o rodapé mobile no mobile */
+  .footer-mobile {
+    display: block; /* Exibe o rodapé mobile */
+    background-color: #00251a; /* Cor de fundo do rodapé */
+    color: #fff; /* Cor do texto branco */
+    padding: 2rem 1rem 0; /* Espaçamento interno do rodapé */
+    margin-top: auto; /* Faz com que o rodapé fique no fundo da página */
+  }
+
+  /* Rodapé mobile */
+  .footer-mobile .footer-grid {
+    display: block; /* Alinha o conteúdo do rodapé em bloco no mobile */
+    text-align: center; /* Centraliza o texto */
+    gap: 1rem; /* Ajuste de espaçamento entre os itens */
+  }
+
+  .footer-mobile .footer-logo img {
+    max-height: 120px; /* Ajusta a altura do logo para mobile */
+    margin-left: 0; /* Remove o deslocamento à esquerda do logo */
+  }
+
+  .footer-mobile .footer-col h4 {
+    font-size: 1.5rem; /* Ajuste do tamanho da fonte do título no mobile */
+    margin-top: 3rem; /* Diminui o espaçamento superior */
+  }
+
+  .footer-mobile .footer-col ul {
+    list-style: none; /* Remove os marcadores da lista */
+    padding: 0; /* Remove o padding */
+  }
+
+  .footer-mobile .footer-col a {
+    color: #fff; /* Cor do texto dos links */
+    text-decoration: none; /* Remove o sublinhado dos links */
+  }
+
+  /* Outras regras para o rodapé mobile */
+  .footer-mobile .footer-grid {
+    display: block;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .footer-mobile .footer-bottom {
+    text-align: center; /* Centraliza o texto */
+    padding: 1rem 0; /* Espaçamento no rodapé inferior */
+    background-color: #1a1a1a; /* Cor de fundo da parte inferior */
+    font-size: 0.9rem; /* Tamanho da fonte */
+    margin-top: 2rem; /* Espaçamento superior */
+    width: 100%; /* Garantir que a largura ocupe toda a tela */
+    margin-left: 0; /* Remove o espaço à esquerda */
+    margin-right: 0; /* Remove o espaço à direita */
+  }
+
+  /* Esconde o rodapé desktop no mobile */
+  .footer-desktop {
+    display: none !important; /* Esconde o rodapé desktop */
+  }
+}
+
+
+
+/* ======================= */
+/* BOTÃO FLUTUANTE WHATSAPP */
+/* ======================= */
+.whatsapp-float {
+  position: fixed; /* Fixa o botão no fundo da tela */
+  bottom: 20px; /* Distância do fundo */
+  right: 20px; /* Distância da direita */
+  background-color: #25d366; /* Cor de fundo do botão */
+  border-radius: 50%; /* Torna o botão circular */
+  padding: 12px; /* Espaçamento interno */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra ao redor do botão */
+  z-index: 1000; /* Garante que o botão fique acima de outros elementos */
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1); /* Aumenta o botão ao passar o mouse */
+}
+
+.whatsapp-float img {
+  width: 40px; /* Tamanho do ícone */
+  height: 40px; /* Tamanho do ícone */
+  display: block; /* Exibe o ícone como um bloco */
+}
+
+/* Ajustes para o mobile */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 15px; /* Distância do fundo no mobile */
+    right: 15px; /* Distância da direita no mobile */
+    padding: 10px; /* Menor padding no mobile */
+  }
+
+  .whatsapp-float img {
+    width: 35px; /* Tamanho do ícone ajustado para o mobile */
+    height: 35px;
+  }
+}
+
+/* No desktop */
+@media (min-width: 769px) {
+  .whatsapp-float {
+    bottom: 20px; /* Distância do fundo no desktop */
+    right: 20px; /* Distância da direita no desktop */
+    padding: 12px; /* Padding ajustado para o desktop */
+  }
+
+  .whatsapp-float img {
+    width: 40px; /* Tamanho do ícone ajustado para o desktop */
+    height: 40px;
+  }
+}
+
+
+
+/* ======================= */
+/* RESPONSIVO - MOBILE & DESKTOP */
+/* ======================= */
+
+/* ======================= */
+/* MOBILE (até 768px) */
+/* ======================= */
+@media (max-width: 768px) {
+  header .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    position: relative;
+  }
+
+  .logo img {
+    max-height: 80px;
+    margin-top: 0;
+  }
+
+  /* MENU TOGGLE (hamburger) */
+  .menu-toggle {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #fff; /* Cor do ícone */
+    cursor: pointer;
+    z-index: 1100;
+    transition: transform 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  
+  /* NAV MOBILE */
+  #nav-desktop {
+    display: none !important;
+  }
+
+  /* Menu mobile */
+  #nav-mobile {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80vw;
+    height: 100vh;
+    background-color: #004d40;
+    padding-top: 60px;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  /* Quando a classe 'active' é aplicada ao menu */
+  #nav-mobile.active {
+    display: block;
+    transform: translateX(0);
+    background-color: #004d40; /* Cor de fundo do menu quando aberto */
+    z-index: 1000;
+  }
+
+  #nav-mobile .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #nav-mobile ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Aumenta o espaçamento entre os itens */
+  }
+
+  #nav-mobile li {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #fff; /* Separando as opções do menu */
+  }
+
+  #nav-mobile .menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  #nav-mobile a,
+.submenu-toggle {
+  color: white;
+  font-size: 1.1rem;
+  text-decoration: none;
+  background: none;
+  border: none;
+  text-align: left;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+#nav-mobile .menu li {
+  padding: 1rem;
+  border-bottom: 1px solid #fff; /* Separando as opções do menu */
+  display: flex;
+  justify-content: space-between; /* Garante que a seta e a palavra fiquem alinhadas */
+}
+
+/* Estilos para o texto do submenu (diferenciar das demais opções) */
+#nav-mobile .submenu li a {
+  font-size: 1rem; /* Tamanho da fonte do submenu */
+  color: #f5f5f5;  /* Cor diferente do texto principal */
+  font-weight: normal; /* Remover negrito se necessário */
+  padding: 1rem; /* Padding para dar um espaçamento confortável */
+  text-align: left; /* Alinhamento à esquerda */
+}
+
+#nav-mobile .submenu li a:hover {
+  background-color: #003c2e; /* Cor de fundo */
+  color: #fff; /* Garantir que o texto fique branco quando hover */
+}
+
+
+
+.submenu-toggle span {
+  float: right;
+  transition: transform 0.3s ease;
+}
+
+.has-submenu.open .submenu-toggle span {
+  transform: rotate(180deg);
+}
+
+/* Submenu: Agora ele ficará abaixo da opção "Serviços" */
+.submenu {
+  display: none; /* Inicialmente oculto */
+  padding-left: 1rem; /* Espaçamento à esquerda */
+  margin-top: 0.5rem; /* Espaço entre a opção principal e as subopções */
+  max-height: 0; /* Inicialmente fechado */
+  overflow: hidden; /* Impede que o conteúdo transborde */
+  transition: max-height 0.3s ease, opacity 0.3s ease; /* Efeito de transição suave */
+  opacity: 0; /* Inicialmente invisível */
+  width: 100%; /* Garante que o submenu tenha a mesma largura do item principal */
+}
+
+/* Adicionar um alinhamento vertical para o submenu abaixo da palavra "Serviços" */
+.has-submenu {
+  position: relative; /* Para garantir que o submenu seja posicionado abaixo do item */
+  width: 100%; /* Garante que o submenu ocupe toda a largura do item principal */
+}
+
+/* Exibe o submenu quando a classe .open for adicionada */
+.has-submenu.open .submenu {
+  display: block; /* Torna o submenu visível */
+  max-height: 500px; /* Ajuste conforme o conteúdo */
+  opacity: 1; /* Torna o submenu visível */
+  transition: opacity 0.3s ease;
+  margin-top: 0.5rem; /* Espaço entre o submenu e a opção "Serviços" */
+}
+
+/* Exibe o submenu de forma vertical abaixo do item principal */
+.has-submenu.open {
+  display: flex;  /* Mostra os itens do submenu em um layout de lista */
+  flex-direction: column; /* Coloca as opções do submenu em uma coluna */
+  width: 100%; /* Submenu vai ocupar 100% da largura do item "Serviços" */
+  padding: 0; /* Remove os espaços desnecessários */
+}
+
+
+  /* STICKY HEADER */
+  #main-header.sticky {
+    background-color: #003c2e;
+    padding: 0.5rem 1rem;
+    height: 60px;
+  }
+
+  #main-header.sticky .container {
+    padding: 0;
+    align-items: center;
+  }
+
+  #main-header.sticky .logo img {
+    max-height: 50px;
+  }
+
+  /* BANNER */
+  .banner {
+    padding: 4rem 1rem 3rem;
+    min-height: 400px; /* Ajuste na altura */
+    clip-path: none;
+  }
+
+  .banner-content {
+    margin-top: 3rem;
+    gap: 1rem;
+  }
+
+  .banner h1 {
+    font-size: 1.8rem;
+  }
+
+  .banner p {
+    font-size: 1rem;
+  }
+
+  .banner .btn {
+    padding: 0.7rem 1.4rem;
+    font-size: 0.9rem;
+  }
+
+  /* Ajustes para a página de subserviços no mobile */
+@media (max-width: 768px) {
+  .conteudo-flex {
+    flex-direction: column; /* Empilha o conteúdo no mobile */
+    gap: 20px; /* Ajusta o espaçamento entre as colunas */
+  }
+
+  .imagem-projeto {
+    text-align: center;
+  }
+
+  .imagem-projeto img {
+    max-width: 100%; /* Garante que a imagem ocupe toda a largura disponível */
+    height: auto;    /* Ajusta a altura automaticamente */
+    object-fit: cover; /* Ajuste o comportamento da imagem */
+  }
+
+  .texto-projeto {
+    font-size: 1rem; /* Ajusta o tamanho da fonte para o mobile */
+    padding: 1rem;   /* Adiciona um pouco de espaço ao redor do texto */
+  }
+
+  .texto-projeto ul {
+    font-size: 1rem; /* Ajusta o tamanho da fonte da lista */
+    padding-left: 20px;
+  }
+
+  .texto-projeto li {
+  margin-bottom: 10px; /* Adiciona um espaçamento leve entre os itens da lista */
+  font-size: 1rem; /* Tamanho da fonte dos itens da lista */
+}
+
+
+  /* Adiciona espaçamento ao redor do conteúdo */
+  .section.container {
+    padding: 1rem;
+  }
+
+  /* Ajustes no footer */
+  .footer-grid {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+  .footer-col,
+  .footer-logo {
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Ajuste para os cards no mobile */
+  @media (max-width: 768px) {
+    .servicos-grid-home {
+      display: block;
+      max-width: 100%; /* Largura do card 100% no mobile */
+      margin: 0 auto;
+    }
+
+    .card-servico {
+      width: 100%;
+      height: 250px; /* Definindo altura dos cards */
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+
+/* -------- DESKTOP -------- */
+@media (min-width: 769px) {
+  nav {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .menu-toggle {
+    display: none !important;
+  }
+
+  #nav-mobile {
+    display: none !important;
+  }
+
+  #nav-desktop {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  #nav-desktop ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  #nav-desktop a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  #nav-desktop .has-submenu {
+    position: relative;
+  }
+
+  #nav-desktop .submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    background: #004d40;
+    padding: 0.5rem 0;
+    list-style: none;
+    min-width: 200px;
+  }
+
+  #nav-desktop .has-submenu:hover .submenu {
+    display: block;
+  }
+
+  #nav-desktop .submenu li a {
+    padding: 0.5rem 1rem;
+    color: #fff;
+    display: block;
+  }
+
+  /* Estilo padrão desktop: mostra todos os cards em grid */
+  .servicos-grid-home {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .card-servico {
+    display: block;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    position: relative;
+    height: 200px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .card-servico:hover {
+    transform: scale(1.05);
+  }
+
+  .card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 8px 8px;
+  }
+
+  .imagem-projeto {
+    flex: 2; /* A imagem ocupará 1 parte da largura */
+    display: flex;
+    justify-content: center; /* Garante que a imagem se ajuste no centro */
+    overflow: hidden; /* Garante que nada extra vá para fora da div */
+  }
+
+  /* Ajuste para as imagens nos serviços */
+  .imagem-projeto img {
+    width: 100%; /* Garante que as imagens ocupem toda a largura disponível */
+    height: 300px; /* Altura fixa para todas as imagens */
+    object-fit: cover; /* Faz com que a imagem preencha o espaço disponível sem distorcer */
+    border-radius: 8px; /* Bordas arredondadas, se desejar */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra leve para destaque */
+  }
+
+  .texto-projeto {
+    flex: 2; /* O texto ocupará 2 partes da largura */
+    font-size: 1.2rem; /* Ajuste do tamanho da fonte */
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .texto-projeto li {
+  margin-bottom: 10px; /* Adiciona um espaçamento leve entre os itens da lista */
+  font-size: 1rem; /* Tamanho da fonte dos itens da lista */
+}
+
+/* Ajuste específico para o desktop */
+@media (min-width: 769px) {
+  .conteudo-flex {
+    display: flex;
+    gap: 30px; /* Espaço entre os itens */
+   
+  }
+
+  /* Certificando que a imagem se comporta corretamente em todas as páginas de subserviços */
+  .imagem-projeto img {
+    width: 100%;   /* Faz a imagem ocupar 100% da largura disponível */
+    height: 100%;  /* Garante que a imagem ocupe toda a altura definida */
+    object-fit: contain; /* Ajusta a imagem sem cortar ou distorcer */
+  }
+}
+}
